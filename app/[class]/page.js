@@ -69,7 +69,7 @@ export default function ClassPage({ params }) {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-400">Файлів у розділі "book" немає</p>
+        <p className="text-gray-400">Файлів у розділі 'book' немає</p>
       )}
     </main>
   );
