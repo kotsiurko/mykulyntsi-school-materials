@@ -2,6 +2,8 @@ import Link from "next/link";
 
 export default function Home() {
   const classes = [
+    { title: "5", class: "05" },
+    { title: "6", class: "06" },
     { title: "8", class: "08" },
     { title: "9", class: "09" },
     { title: "10", class: "10" },
