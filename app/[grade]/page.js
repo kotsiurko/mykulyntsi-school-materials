@@ -3,7 +3,7 @@ import path from "path";
 import Link from "next/link";
 
 export default function ClassPage({ params }) {
-  const className = params.class;
+  const className = params.grade;
 
   // Шлях до папки класу
   const classDir = path.join(process.cwd(), "public", className);
