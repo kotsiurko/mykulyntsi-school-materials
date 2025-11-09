@@ -18,22 +18,34 @@ export default function ClassPage({ params }) {
     );
   }
 
-  // Шлях до папки класу
   const classDir = path.join(process.cwd(), "public", className);
-  const bookDir = path.join(classDir, "book");
 
-  // Отримуємо файли з кореня папки класу
-  let classFiles = [];
-  if (fs.existsSync(classDir)) {
-    classFiles = fs.readdirSync(classDir).filter(
-      (file) => file !== "book" // виключаємо саму папку book
-    );
+  // read directory entries and separate files vs folders
+  let dirents = [];
+  try {
+    if (fs.existsSync(classDir)) {
+      dirents = fs.readdirSync(classDir, { withFileTypes: true });
+    }
+  } catch (err) {
+    console.error("Error reading class directory:", err);
   }
 
-  // Отримуємо файли з папки "book"
+  const subfolders = dirents
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    // optional: exclude hidden/system directories
+    .filter((n) => !n.startsWith("."));
+
+  const classFiles = dirents
+    .filter((d) => d.isFile())
+    .map((d) => d.name)
+    .filter((n) => n !== "book"); // keep behavior from before
+
+  // also read files inside optional 'book' folder (kept as before)
+  const bookDir = path.join(classDir, "book");
   let bookFiles = [];
   if (fs.existsSync(bookDir)) {
-    bookFiles = fs.readdirSync(bookDir);
+    bookFiles = fs.readdirSync(bookDir).filter((f) => !f.startsWith("."));
   }
 
   return (
@@ -45,15 +57,35 @@ export default function ClassPage({ params }) {
         Матеріали для {className} класу
       </h1>
 
-      {/* Файли з кореня */}
+      {/* Subfolders */}
+      {subfolders.length > 0 && (
+        <>
+          <h2 className="text-lg font-semibold mb-3">Папки</h2>
+          <ul className="mb-6">
+            {subfolders.map((folder) => (
+              <li key={folder} className="mb-2">
+                <Link
+                  href={`/${className}/${encodeURIComponent(folder)}`}
+                  className="block py-3 px-4 rounded-lg shadow hover:opacity-95 bg-[color:var(--background)] text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
+                >
+                  📁 {folder}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {/* Files in class root */}
+      <h2 className="text-lg font-semibold mb-3">Файли</h2>
       {classFiles.length > 0 ? (
         <ul className="mb-6">
           {classFiles.map((file, idx) => (
             <li key={idx} className="mb-2">
               <a
-                href={`/${className}/${file}`}
+                href={`/${className}/${encodeURIComponent(file)}`}
                 download
-                className="block bg-[color:var(--background)] hover:bg-[color:var(--surface-hover)] p-4 rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
+                className="block px-4 py-3 bg-[color:var(--surface)] hover:bg-[color:var(--surface-hover)] rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
               >
                 {file}
               </a>
@@ -65,27 +97,6 @@ export default function ClassPage({ params }) {
       )}
 
       <hr className="border-gray-600 my-6" />
-
-      {/* Файли з папки book */}
-      {bookFiles.length > 0 ? (
-        <ul>
-          {bookFiles.map((file, idx) => (
-            <li key={idx} className="mb-2">
-              <a
-                href={`/${className}/book/${file}`}
-                download
-                className="block bg-[color:var(--surface)] hover:bg-[color:var(--surface-hover)] p-4 rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
-              >
-                {file}
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-[color:var(--muted)]">
-          Файлів у розділі &apos;book&apos; немає
-        </p>
-      )}
     </main>
   );
 }
