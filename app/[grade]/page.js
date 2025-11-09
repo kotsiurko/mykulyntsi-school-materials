@@ -3,7 +3,20 @@ import path from "path";
 import Link from "next/link";
 
 export default function ClassPage({ params }) {
-  const className = params.grade;
+  const className = params?.grade;
+
+  if (!className) {
+    return (
+      <main className="min-h-screen p-6">
+        <p className="text-red-600">
+          Невірний запит: відсутній параметр класу.
+        </p>
+        <Link href="/" className="text-current hover:underline">
+          ← Назад
+        </Link>
+      </main>
+    );
+  }
 
   // Шлях до папки класу
   const classDir = path.join(process.cwd(), "public", className);
@@ -24,8 +37,8 @@ export default function ClassPage({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white p-6">
-      <Link href="/" className="text-orange-400 hover:underline">
+    <main className="min-h-screen p-6">
+      <Link href="/" className="text-current hover:underline">
         ← Назад
       </Link>
       <h1 className="text-2xl font-bold mt-4 mb-6">
@@ -40,7 +53,7 @@ export default function ClassPage({ params }) {
               <a
                 href={`/${className}/${file}`}
                 download
-                className="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg shadow text-orange-300"
+                className="block bg-[color:var(--background)] hover:bg-[color:var(--surface-hover)] p-4 rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
               >
                 {file}
               </a>
@@ -48,7 +61,7 @@ export default function ClassPage({ params }) {
           ))}
         </ul>
       ) : (
-        <p className="mb-6 text-gray-400">Файлів немає</p>
+        <p className="mb-6 text-[color:var(--muted)]">Файлів немає</p>
       )}
 
       <hr className="border-gray-600 my-6" />
@@ -61,7 +74,7 @@ export default function ClassPage({ params }) {
               <a
                 href={`/${className}/book/${file}`}
                 download
-                className="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg shadow text-orange-300"
+                className="block bg-[color:var(--surface)] hover:bg-[color:var(--surface-hover)] p-4 rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
               >
                 {file}
               </a>
@@ -69,7 +82,9 @@ export default function ClassPage({ params }) {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-400">Файлів у розділі &apos;book&apos; немає</p>
+        <p className="text-[color:var(--muted)]">
+          Файлів у розділі &apos;book&apos; немає
+        </p>
       )}
     </main>
   );
