@@ -50,7 +50,7 @@ export default function FolderPage({ params }) {
                   folder
                 )}/${encodeURIComponent(file)}`}
                 download
-                className="block px-4 py-3 bg-[color:var(--surface)] hover:bg-[color:var(--surface-hover)] rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
+                className="block px-4 py-3 bg-[color:var(--background)] hover:bg-[color:var(--surface-hover)] rounded-lg shadow text-[color:color-mix(in srgb,var(--foreground) 85%, white 15%)]"
               >
                 {file}
               </a>
