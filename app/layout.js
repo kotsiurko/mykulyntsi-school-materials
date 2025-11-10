@@ -23,7 +23,8 @@ export default function RootLayout({ children }) {
         >
           <h1 className="text-2xl font-bold">Микулинецький ОЗЗСО І-ІІІ ст.</h1>
           <p className="text-sm mt-1" style={{ color: "var(--foreground)" }}>
-            Створено для учнів Микулинецької школи, що вивчають інформатику
+            Створено для учнів Микулинецької школи, що вивчають інформатику та
+            фізику
           </p>
         </header>
 
