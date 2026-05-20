@@ -1,9 +1,7 @@
 #include <Servo.h>
 
-#define pinServo 3
-#define pinButton1 4
-#define pinButton2 5
-#define pinButton3 6
+// Початкові налаштування
+...
 
 Servo myservo;
 
@@ -21,5 +19,19 @@ void setup() {
 
 void loop() {
 
+  int angle = lastAngle;
 
+  // кнопки активні при LOW (бо pullup)
+  if (digitalRead(pinButton1) == LOW) angle = 0;
+  else if (digitalRead(pinButton2) == LOW) angle = 90;
+  else if (digitalRead(pinButton3) == LOW) angle = 160;
+
+  // оновлюємо тільки якщо змінилось
+  if (angle != lastAngle) {
+    angle = constrain(angle, 5, 175);
+    myservo.write(angle);
+    lastAngle = angle;
+  }
+
+  delay(20);
 }
