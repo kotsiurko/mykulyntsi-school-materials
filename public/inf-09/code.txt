@@ -1,0 +1,25 @@
+#include <Servo.h>
+
+#define pinServo 3
+#define pinButton1 4
+#define pinButton2 5
+#define pinButton3 6
+
+Servo myservo;
+
+int lastAngle = -1;
+
+void setup() {
+  myservo.attach(pinServo);
+
+  pinMode(pinButton1, INPUT_PULLUP);
+  pinMode(pinButton2, INPUT_PULLUP);
+  pinMode(pinButton3, INPUT_PULLUP);
+
+  myservo.write(90);
+}
+
+void loop() {
+
+
+}
