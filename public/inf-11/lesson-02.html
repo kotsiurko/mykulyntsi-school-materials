@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML: теги для роботи з текстом — 11 клас</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #5b6472;
+        --accent: #2563eb;
+        --accent2: #0f766e;
+        --code: #eef2ff;
+        --border: #dbe3ef;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+      }
+      header {
+        padding: 42px 20px;
+        background: linear-gradient(135deg, #172554, #2563eb);
+        color: white;
+      }
+      header .wrap,
+      main {
+        max-width: 1100px;
+        margin: auto;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 2.3rem;
+      }
+      header p {
+        margin: 0;
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+      main {
+        padding: 24px 20px 60px;
+      }
+      section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        margin: 18px 0;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      }
+      h2 {
+        margin-top: 0;
+        color: #172554;
+      }
+      h3 {
+        color: #1e40af;
+        margin-bottom: 6px;
+      }
+      .tip {
+        border-left: 5px solid var(--accent2);
+        background: #ecfdf5;
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      .warn {
+        border-left: 5px solid #d97706;
+        background: #fffbeb;
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      code {
+        background: var(--code);
+        padding: 2px 6px;
+        border-radius: 5px;
+        color: #3730a3;
+        font-family: Consolas, monospace;
+      }
+      pre {
+        background: #111827;
+        color: #f9fafb;
+        padding: 14px 16px;
+        border-radius: 9px;
+        overflow-x: auto;
+      }
+      pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      th,
+      td {
+        border: 1px solid var(--border);
+        padding: 10px;
+        vertical-align: top;
+      }
+      th {
+        background: #eff6ff;
+        text-align: left;
+      }
+      .tag {
+        font-family: Consolas, monospace;
+        font-weight: bold;
+        color: #1d4ed8;
+      }
+      .badge {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: #dbeafe;
+        color: #1e40af;
+        font-size: 0.85rem;
+        margin: 2px;
+      }
+      .task {
+        background: #f8fafc;
+        border: 2px dashed #93c5fd;
+        border-radius: 12px;
+        padding: 18px;
+        margin-top: 12px;
+      }
+      ol li,
+      ul li {
+        margin: 7px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 25px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>HTML: теги для роботи з текстом</h1>
+        <p>Урок №2 • 11-А клас • HTML5</p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>🎯 Мета уроку</h2>
+        <p>
+          Навчитися використовувати HTML-теги для створення та форматування
+          текстового вмісту вебсторінки.
+        </p>
+        <p>Після уроку ви повинні вміти:</p>
+        <ul>
+          <li>створювати заголовки різних рівнів;</li>
+          <li>оформлювати абзаци та переносити рядки;</li>
+          <li>виділяти важливий текст;</li>
+          <li>створювати цитати, код, верхні та нижні індекси;</li>
+          <li>комбінувати різні теги для створення цікавої вебсторінки.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>1. Заголовки</h2>
+        <p>
+          Для заголовків використовують теги від <code>&lt;h1&gt;</code> до
+          <code>&lt;h6&gt;</code>.
+        </p>
+
+        <h1 style="font-size: 1.8rem">h1 — головний заголовок</h1>
+        <h2>h2 — заголовок розділу</h2>
+        <h3>h3 — підрозділ</h3>
+        <h4>h4 — менший підрозділ</h4>
+        <h5>h5 — невеликий заголовок</h5>
+        <h6>h6 — найменший заголовок</h6>
+
+        <pre><code>&lt;h1&gt;Моя вебсторінка&lt;/h1&gt;
+&lt;h2&gt;Проєкти&lt;/h2&gt;
+&lt;h3&gt;Мій перший проєкт&lt;/h3&gt;</code></pre>
+
+        <div class="tip">
+          <strong>Порада:</strong> зазвичай на сторінці використовують один
+          основний <code>h1</code>, а далі будують логічну структуру за
+          допомогою <code>h2</code>, <code>h3</code> тощо.
+        </div>
+      </section>
+
+      <section>
+        <h2>2. Абзаци та перенесення рядка</h2>
+        <table>
+          <tr>
+            <th>Тег</th>
+            <th>Призначення</th>
+            <th>Приклад</th>
+          </tr>
+          <tr>
+            <td class="tag">&lt;p&gt;</td>
+            <td>Абзац тексту</td>
+            <td><code>&lt;p&gt;Це мій абзац.&lt;/p&gt;</code></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;br&gt;</td>
+            <td>Примусовий перенос рядка</td>
+            <td><code>Рядок 1&lt;br&gt;Рядок 2</code></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;hr&gt;</td>
+            <td>Горизонтальна тематична лінія</td>
+            <td><code>&lt;hr&gt;</code></td>
+          </tr>
+        </table>
+
+        <p>Перший абзац. Тут міститься звичайний текст.</p>
+        <p>Другий абзац.<br />А цей текст починається з нового рядка.</p>
+        <hr />
+      </section>
+
+      <section>
+        <h2>3. Виділення тексту</h2>
+        <table>
+          <tr>
+            <th>Тег</th>
+            <th>Що робить</th>
+            <th>Приклад</th>
+          </tr>
+          <tr>
+            <td class="tag">&lt;strong&gt;</td>
+            <td>Позначає важливий текст</td>
+            <td><strong>дуже важливо</strong></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;b&gt;</td>
+            <td>Візуально робить текст жирним</td>
+            <td><b>жирний текст</b></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;em&gt;</td>
+            <td>Логічно виділяє текст, зазвичай курсивом</td>
+            <td><em>важливий акцент</em></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;i&gt;</td>
+            <td>Курсивне оформлення</td>
+            <td><i>курсив</i></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;u&gt;</td>
+            <td>Підкреслений текст</td>
+            <td><u>підкреслено</u></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;s&gt;</td>
+            <td>Текст, який більше не є актуальним</td>
+            <td><s>Стара ціна: 500 грн</s></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;mark&gt;</td>
+            <td>Підсвічує фрагмент</td>
+            <td><mark>головне слово</mark></td>
+          </tr>
+          <tr>
+            <td class="tag">&lt;small&gt;</td>
+            <td>Дрібніший текст</td>
+            <td><small>Примітка</small></td>
+          </tr>
+        </table>
+
+        <pre><code>&lt;p&gt;
+  Це &lt;strong&gt;дуже важливо&lt;/strong&gt;,
+  а це &lt;em&gt;акцент&lt;/em&gt;.
+  &lt;mark&gt;Зверни увагу!&lt;/mark&gt;
+&lt;/p&gt;</code></pre>
+
+        <p>
+          Це <strong>дуже важливо</strong>, а це <em>акцент</em>.
+          <mark>Зверни увагу!</mark>
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Верхній та нижній індекси</h2>
+        <p>
+          Теги <code>&lt;sup&gt;</code> та <code>&lt;sub&gt;</code> дозволяють
+          створювати верхні та нижні індекси.
+        </p>
+
+        <p>Приклади:</p>
+        <ul>
+          <li>Площа: 10 м<sup>2</sup></li>
+          <li>Вода: H<sub>2</sub>O</li>
+          <li>Теорема: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></li>
+          <li>Вуглекислий газ: CO<sub>2</sub></li>
+        </ul>
+
+        <pre><code>H&lt;sub&gt;2&lt;/sub&gt;O
+x&lt;sup&gt;2&lt;/sup&gt;
+a&lt;sup&gt;2&lt;/sup&gt; + b&lt;sup&gt;2&lt;/sup&gt; = c&lt;sup&gt;2&lt;/sup&gt;</code></pre>
+        <p>H<sub>2</sub>O</p>
+        <p>x<sup>2</sup></p>
+        <p>a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></p>
+      </section>
+
+      <section>
+        <h2>5. Цитати</h2>
+        <p>
+          Для цитат можна використовувати <code>&lt;q&gt;</code> та
+          <code>&lt;blockquote&gt;</code>.
+        </p>
+
+        <p>Коротка цитата: <q>Знання — сила.</q></p>
+
+        <blockquote>
+          HTML визначає структуру вебсторінки, а CSS відповідає за її
+          оформлення.
+        </blockquote>
+
+        <pre><code>&lt;p&gt;Як казав автор: &lt;q&gt;Знання — сила.&lt;/q&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  Довша цитата або окремий фрагмент тексту.
+&lt;/blockquote&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>6. Код та попередньо форматований текст</h2>
+        <p>
+          <code>&lt;code&gt;</code> використовують для невеликих фрагментів
+          програмного коду.
+        </p>
+        <p>Наприклад: <code>console.log("Hello!");</code></p>
+
+        <p><code>&lt;pre&gt;</code> зберігає пробіли та переноси рядків.</p>
+
+        <pre><code>&lt;pre&gt;function hello() {
+    console.log("Привіт, світе!");
+}&lt;/pre&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>7. Список тегів для сьогоднішньої роботи</h2>
+        <p>
+          <span class="badge">&lt;h1&gt;–&lt;h6&gt;</span>
+          <span class="badge">&lt;p&gt;</span>
+          <span class="badge">&lt;br&gt;</span>
+          <span class="badge">&lt;hr&gt;</span>
+          <span class="badge">&lt;strong&gt;</span>
+          <span class="badge">&lt;b&gt;</span>
+          <span class="badge">&lt;em&gt;</span>
+          <span class="badge">&lt;i&gt;</span>
+          <span class="badge">&lt;u&gt;</span>
+          <span class="badge">&lt;s&gt;</span>
+          <span class="badge">&lt;mark&gt;</span>
+          <span class="badge">&lt;small&gt;</span>
+          <span class="badge">&lt;sup&gt;</span>
+          <span class="badge">&lt;sub&gt;</span>
+          <span class="badge">&lt;q&gt;</span>
+          <span class="badge">&lt;blockquote&gt;</span>
+          <span class="badge">&lt;code&gt;</span>
+          <span class="badge">&lt;pre&gt;</span>
+        </p>
+      </section>
+
+      <section>
+        <h2>🎬 Практичне завдання</h2>
+
+        <div class="task">
+          <h3>«Створи свою сторінку про космічну експедицію» 🚀</h3>
+
+          <p>
+            <strong
+              >Уяви, що ти учасник першої української експедиції на
+              Марс.</strong
+            >
+            Створи HTML-сторінку, яка розповідає про місію, космічний корабель,
+            екіпаж і цікаві факти про Марс.
+          </p>
+
+          <h3>Обов'язково використай:</h3>
+          <ol>
+            <li>
+              <strong>Заголовки</strong> — щонайменше 3 рівні: <code>h1</code>,
+              <code>h2</code>, <code>h3</code>.
+            </li>
+            <li><strong>Абзаци</strong> — не менше 5 тегів <code>p</code>.</li>
+            <li>
+              <strong>Виділення</strong> — використай щонайменше 5 різних тегів
+              із групи <code>strong</code>, <code>b</code>, <code>em</code>,
+              <code>i</code>, <code>u</code>, <code>s</code>, <code>mark</code>,
+              <code>small</code>.
+            </li>
+            <li>
+              <strong>Переноси та розділення</strong> — використай
+              <code>br</code> та <code>hr</code>.
+            </li>
+            <li>
+              <strong>Формули або хімічні формули</strong> — використай
+              <code>sup</code> та <code>sub</code>. Наприклад: CO<sub>2</sub>,
+              H<sub>2</sub>O, 2<sup>10</sup>.
+            </li>
+            <li>
+              <strong>Цитату</strong> — використай <code>q</code> або
+              <code>blockquote</code>.
+            </li>
+            <li>
+              <strong>Фрагмент коду</strong> — використай <code>code</code> або
+              <code>pre</code>. Наприклад, код запуску бортового комп'ютера.
+            </li>
+          </ol>
+
+          <h3>Додатково ⭐</h3>
+          <ul>
+            <li>Додай зображення Марса або космічного корабля.</li>
+            <li>Створи список членів екіпажу.</li>
+            <li>Додай посилання на цікавий сайт про космос.</li>
+            <li>
+              Додай власний CSS, щоб сторінка виглядала як сайт космічної місії.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>🧩 Ідея структури сторінки</h2>
+        <pre><code>&lt;h1&gt;Місія «Україна — Марс» 🚀&lt;/h1&gt;
+
+&lt;p&gt;Коротка розповідь про нашу експедицію...&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Наша команда&lt;/h2&gt;
+&lt;h3&gt;Командир експедиції&lt;/h3&gt;
+&lt;p&gt;...&lt;/p&gt;
+
+&lt;h3&gt;Інженер&lt;/h3&gt;
+&lt;p&gt;...&lt;/p&gt;
+
+&lt;h2&gt;Цікаві факти про Марс&lt;/h2&gt;
+&lt;p&gt;Марс має атмосферу, що містить багато CO&lt;sub&gt;2&lt;/sub&gt;...&lt;/p&gt;
+
+&lt;blockquote&gt;
+  Ваша власна цитата про дослідження космосу.
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Бортовий комп'ютер&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;
+SYSTEM: READY
+MISSION: MARS
+CREW: 4
+STATUS: GO!
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>✅ Самоперевірка</h2>
+        <p>Перед здачею роботи перевір:</p>
+        <ul>
+          <li>☐ Є <code>&lt;h1&gt;</code> та кілька підзаголовків.</li>
+          <li>☐ Є щонайменше 5 абзаців.</li>
+          <li>☐ Використано багато різних тегів форматування.</li>
+          <li>☐ Є <code>&lt;br&gt;</code> та <code>&lt;hr&gt;</code>.</li>
+          <li>☐ Є верхній та нижній індекси.</li>
+          <li>☐ Є цитата.</li>
+          <li>☐ Є фрагмент коду.</li>
+          <li>☐ Теги правильно відкриті та закриті.</li>
+          <li>☐ Файл збережено з розширенням <code>.html</code>.</li>
+        </ul>
+
+        <div class="warn">
+          <strong>Головне правило:</strong> не потрібно просто копіювати
+          приклади. Зміст сторінки, назви, факти та оформлення придумай
+          самостійно.
+        </div>
+      </section>
+
+      <section>
+        <h2>🏆 Для тих, хто хоче більше</h2>
+        <p>
+          Спробуй зробити сторінку такою, щоб вона виглядала як справжній сайт
+          космічної місії. Додай кольори, фон, зображення, таблицю характеристик
+          корабля та навігацію між розділами.
+        </p>
+      </section>
+    </main>
+
+    <footer>Інформатика • 11 клас • HTML</footer>
+  </body>
+</html>
