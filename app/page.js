@@ -4,7 +4,7 @@ export default function Home() {
   const infClasses = [
     { title: "5", grade: "inf-05" },
     { title: "6", grade: "inf-06" },
-    { title: "6", grade: "inf-07" },
+    { title: "7", grade: "inf-07" },
     { title: "8", grade: "inf-08" },
     { title: "9", grade: "inf-09" },
     { title: "10", grade: "inf-10" },
