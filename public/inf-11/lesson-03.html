@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Конспект уроку інформатики 11 клас: списки, атрибути та посилання в HTML"
+    />
+    <title>HTML: списки, атрибути та посилання — 11 клас</title>
+    <style>
+      :root {
+        --bg: #f5f3ff;
+        --card: #fff;
+        --text: #29243a;
+        --muted: #6b647b;
+        --accent: #7c3aed;
+        --dark: #4c1d95;
+        --cyan: #0891b2;
+        --code: #f0eafa;
+        --border: #ddd6fe;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+      }
+      header {
+        padding: 42px 20px;
+        background: linear-gradient(135deg, #4c1d95, #7c3aed, #0891b2);
+        color: #fff;
+      }
+      header .wrap,
+      main {
+        max-width: 1100px;
+        margin: auto;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 2.3rem;
+      }
+      header p {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+      main {
+        padding: 24px 20px 60px;
+      }
+      section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        margin: 18px 0;
+        box-shadow: 0 4px 14px rgba(76, 29, 149, 0.06);
+      }
+      h2 {
+        margin-top: 0;
+        color: var(--dark);
+      }
+      h3 {
+        color: #5b21b6;
+        margin-bottom: 6px;
+      }
+      .tip {
+        border-left: 5px solid var(--cyan);
+        background: #ecfeff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-top: 14px;
+      }
+      .warn {
+        border-left: 5px solid #d97706;
+        background: #fffbeb;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-top: 14px;
+      }
+      code {
+        background: var(--code);
+        padding: 2px 6px;
+        border-radius: 5px;
+        color: #5b21b6;
+        font-family: Consolas, monospace;
+      }
+      pre {
+        background: #171321;
+        color: #f8fafc;
+        padding: 14px 16px;
+        border-radius: 9px;
+        overflow-x: auto;
+      }
+      pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      th,
+      td {
+        border: 1px solid var(--border);
+        padding: 10px;
+        vertical-align: top;
+      }
+      th {
+        background: #f5f3ff;
+        text-align: left;
+      }
+      .tag {
+        font-family: Consolas, monospace;
+        font-weight: bold;
+        color: #6d28d9;
+      }
+      .demo {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px;
+        background: #faf9ff;
+        margin-top: 10px;
+      }
+      .badge {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: #ede9fe;
+        color: #5b21b6;
+        font-size: 0.85rem;
+        margin: 2px;
+      }
+      .task {
+        background: #fafafa;
+        border: 2px dashed #a78bfa;
+        border-radius: 12px;
+        padding: 18px;
+        margin-top: 12px;
+      }
+      .toc a {
+        color: var(--accent);
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+      ol li,
+      ul li {
+        margin: 7px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 25px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>HTML: списки, атрибути та посилання</h1>
+        <p>Конспект-інструкція • 11 клас • HTML5</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="toc">
+        <h2>🎯 Що вивчаємо сьогодні</h2>
+        <ul>
+          <li><a href="#lists">Списки</a></li>
+          <li><a href="#attributes">Атрибути</a></li>
+          <li><a href="#links">Посилання</a></li>
+          <li><a href="#task">Практичне завдання</a></li>
+        </ul>
+      </section>
+
+      <section id="lists">
+        <h2>1. Списки</h2>
+        <p>
+          HTML дозволяє створювати два основні типи списків:
+          <strong>нумеровані</strong> та <strong>ненумеровані</strong>.
+        </p>
+
+        <h3>
+          Нумерований список — <code>&lt;ol&gt;</code> + <code>&lt;li&gt;</code>
+        </h3>
+        <p>
+          <code>ol</code> створює список із порядковими номерами, а кожен пункт
+          записується за допомогою <code>li</code>.
+        </p>
+        <pre><code>&lt;ol&gt;
+  &lt;li&gt;Перший пункт&lt;/li&gt;
+  &lt;li&gt;Другий пункт&lt;/li&gt;
+  &lt;li&gt;Третій пункт&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <ol>
+            <li>Перший пункт</li>
+            <li>Другий пункт</li>
+            <li>Третій пункт</li>
+          </ol>
+        </div>
+
+        <h3>Атрибут <code>start</code></h3>
+        <p>
+          За допомогою <code>start</code> можна вказати, з якого номера
+          починатиметься список.
+        </p>
+        <pre><code>&lt;ol start="3"&gt;
+  &lt;li&gt;Третій пункт&lt;/li&gt;
+  &lt;li&gt;Четвертий пункт&lt;/li&gt;
+  &lt;li&gt;П'ятий пункт&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        <div class="demo">
+          <ol start="3">
+            <li>Третій пункт</li>
+            <li>Четвертий пункт</li>
+            <li>П'ятий пункт</li>
+          </ol>
+        </div>
+
+        <h3>Атрибут <code>type</code></h3>
+        <p>Атрибут <code>type</code> змінює вигляд нумерації.</p>
+        <table>
+          <tr>
+            <th>Значення</th>
+            <th>Результат</th>
+          </tr>
+          <tr>
+            <td><code>type="1"</code></td>
+            <td>1, 2, 3...</td>
+          </tr>
+          <tr>
+            <td><code>type="A"</code></td>
+            <td>A, B, C...</td>
+          </tr>
+          <tr>
+            <td><code>type="I"</code></td>
+            <td>I, II, III...</td>
+          </tr>
+        </table>
+        <pre><code>&lt;ol type="A"&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="I"&gt;
+  &lt;li&gt;Перший розділ&lt;/li&gt;
+  &lt;li&gt;Другий розділ&lt;/li&gt;
+  &lt;li&gt;Третій розділ&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <ol type="A">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ol>
+          <ol type="I">
+            <li>Перший розділ</li>
+            <li>Другий розділ</li>
+            <li>Третій розділ</li>
+          </ol>
+        </div>
+
+        <h3>
+          Ненумерований список — <code>&lt;ul&gt;</code> +
+          <code>&lt;li&gt;</code>
+        </h3>
+        <p>У ненумерованому списку замість номерів використовуються маркери.</p>
+        <pre><code>&lt;ul&gt;
+  &lt;li&gt;Ноутбук&lt;/li&gt;
+  &lt;li&gt;Смартфон&lt;/li&gt;
+  &lt;li&gt;Навушники&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <ul>
+            <li>Ноутбук</li>
+            <li>Смартфон</li>
+            <li>Навушники</li>
+          </ul>
+        </div>
+
+        <h3>Атрибут <code>type</code> для <code>ul</code></h3>
+        <pre><code>&lt;ul type="circle"&gt;
+  &lt;li&gt;Пункт 1&lt;/li&gt;
+  &lt;li&gt;Пункт 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul type="square"&gt;
+  &lt;li&gt;Пункт 1&lt;/li&gt;
+  &lt;li&gt;Пункт 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <ul type="circle">
+            <li>Пункт 1</li>
+            <li>Пункт 2</li>
+          </ul>
+          <ul type="square">
+            <li>Пункт 1</li>
+            <li>Пункт 2</li>
+          </ul>
+        </div>
+
+        <h3>Вкладені списки</h3>
+        <p>
+          Список можна розміщувати всередині іншого списку. Це дозволяє
+          створювати ієрархію.
+        </p>
+        <pre><code>&lt;ul&gt;
+  &lt;li&gt;Комп'ютерні науки
+    &lt;ul&gt;
+      &lt;li&gt;Програмування&lt;/li&gt;
+      &lt;li&gt;Веброзробка&lt;/li&gt;
+      &lt;li&gt;Бази даних&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Мультимедіа&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <ul>
+            <li>
+              Комп'ютерні науки
+              <ul>
+                <li>Програмування</li>
+                <li>Веброзробка</li>
+                <li>Бази даних</li>
+              </ul>
+            </li>
+            <li>Мультимедіа</li>
+          </ul>
+        </div>
+        <div class="tip">
+          <strong>Спробуй сам:</strong> зроби список «Мої захоплення», а
+          всередині одного пункту створи вкладений список.
+        </div>
+      </section>
+
+      <section id="attributes">
+        <h2>2. Атрибути</h2>
+        <p>
+          <strong>Атрибут</strong> — додаткова характеристика HTML-тега. Він
+          записується всередині відкривального тега:
+        </p>
+        <pre><code>&lt;тег атрибут="значення"&gt;Текст&lt;/тег&gt;</code></pre>
+
+        <h3>Атрибут <code>title</code></h3>
+        <p>
+          <code>title</code> можна додавати до багатьох HTML-тегів. Зазвичай він
+          створює підказку при наведенні курсора.
+        </p>
+        <pre><code>&lt;p title="Це підказка до абзацу!"&gt;
+  Наведи курсор на цей текст і побачиш підказку, сховану в атрибуті цього тегу.
+&lt;/p&gt;</code></pre>
+        <h3>Як це працює:</h3>
+        <div class="demo">
+          <p title="Це підказка до абзацу!">
+            Наведи курсор на цей текст і побачиш підказку, сховану в атрибуті
+            цього тегу.
+          </p>
+        </div>
+
+        <h3>Атрибут <code>lang</code></h3>
+        <p>
+          <code>lang</code> застосовують до тега <code>&lt;html&gt;</code>, щоб
+          вказати мову документа.
+        </p>
+        <pre><code>&lt;html lang="uk"&gt;</code></pre>
+        <div class="tip">
+          Для української мови використовуємо <code>lang="uk"</code>. Це корисно
+          для пошукових систем, засобів доступності та програм озвучення.
+        </div>
+
+        <h3>Тег <code>&lt;meta&gt;</code></h3>
+        <p>
+          <code>meta</code> містить службову інформацію про вебсторінку. Сам по
+          собі він не відображає текст на сторінці — його властивості задаються
+          атрибутами.
+        </p>
+        <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="Опис моєї сторінки"&gt;</code></pre>
+        <table>
+          <tr>
+            <th>Запис</th>
+            <th>Для чого</th>
+          </tr>
+          <tr>
+            <td><code>charset="UTF-8"</code></td>
+            <td>Вказує кодування документа.</td>
+          </tr>
+          <tr>
+            <td><code>name="viewport"</code></td>
+            <td>Допомагає правильно відображати сторінку на різних екранах.</td>
+          </tr>
+          <tr>
+            <td><code>name="description"</code></td>
+            <td>Містить короткий опис сторінки.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="links">
+        <h2>3. Посилання</h2>
+        <p>Основний тег для створення посилань — <code>&lt;a&gt;</code>.</p>
+
+        <h3>Атрибут <code>href</code></h3>
+        <p>У <code>href</code> вказується адреса, куди веде посилання.</p>
+        <pre><code>&lt;a href="https://www.google.com"&gt;
+  Відкрити Google
+&lt;/a&gt;</code></pre>
+        <h3>Як це виглядатиме:</h3>
+        <div class="demo">
+          <a href="https://www.google.com" target="_blank">Відкрити Google</a>
+        </div>
+
+        <h3>Внутрішні та зовнішні посилання</h3>
+        <ul>
+          <li><strong>Зовнішнє</strong> веде на інший сайт.</li>
+          <li><strong>Внутрішнє</strong> веде на іншу сторінку твого сайту.</li>
+        </ul>
+        <pre><code>&lt;!-- Зовнішня сторінка --&gt;
+&lt;a href="https://www.wikipedia.org"&gt;Wikipedia&lt;/a&gt;
+
+&lt;!-- Інша сторінка нашого сайту --&gt;
+&lt;a href="about.html"&gt;Про нас&lt;/a&gt;</code></pre>
+
+        <h3>Атрибут <code>target</code></h3>
+        <table>
+          <tr>
+            <th>Значення</th>
+            <th>Що відбувається</th>
+          </tr>
+          <tr>
+            <td><code>target="_self"</code></td>
+            <td>Посилання відкривається у поточній вкладці.</td>
+          </tr>
+          <tr>
+            <td><code>target="_blank"</code></td>
+            <td>Посилання відкривається в новій вкладці.</td>
+          </tr>
+        </table>
+        <pre><code>&lt;a href="about.html" target="_self"&gt;Про нас&lt;/a&gt;
+
+&lt;a href="https://www.wikipedia.org" target="_blank"&gt;
+  Wikipedia
+&lt;/a&gt;</code></pre>
+
+        <h3>Атрибут <code>title</code> у посиланні</h3>
+        <pre><code>&lt;a href="https://www.wikipedia.org"
+   title="Перейти до Wikipedia"
+   target="_blank"&gt;
+  Wikipedia
+&lt;/a&gt;</code></pre>
+        <div class="demo">
+          <a
+            href="https://www.wikipedia.org"
+            title="Перейти до Wikipedia"
+            target="_blank"
+            >Wikipedia</a
+          >
+        </div>
+
+        <h3>Посилання на електронну адресу</h3>
+        <p>
+          Якщо в <code>href</code> написати <code>mailto:</code>, браузер
+          спробує відкрити програму електронної пошти.
+        </p>
+        <pre><code>&lt;a href="mailto:somemail@dot.com"&gt;
+  Написати нам на електронну пошту
+&lt;/a&gt;</code></pre>
+        <div class="demo">
+          <a href="mailto:somemail@dot.com">Написати нам на електронну пошту</a>
+        </div>
+
+        <h3>Якірні посилання — перехід до частини сторінки</h3>
+        <p>
+          Щоб перейти до конкретного місця на поточній сторінці, елементу
+          задають <code>id</code>, а в атрибуті <code>href</code> пишуть
+          <code>#</code> і вказуть це значення з ідентифікатора елемента, на
+          якого хочуть перейти.
+        </p>
+        <pre><code>&lt;h2 id="contacts"&gt;Контакти&lt;/h2&gt;
+
+...
+
+&lt;a href="#contacts"&gt;Перейти до контактів&lt;/a&gt;</code></pre>
+        <h3>Як це працює:</h3>
+        <div class="demo">
+          <a href="#lists">🔗 Перейти до розділу «Списки»</a>
+          <p id="anchor-example">
+            <strong>А ось цей абзац має id="anchor-example".</strong>
+          </p>
+          <a href="#anchor-example">🔗 Перейти до цього місця</a>
+        </div>
+        <div class="tip">
+          <strong>Запам'ятай:</strong> <code>id</code> — унікальне ім'я
+          елемента, а <code>#id</code> у <code>href</code> — звернення до цього
+          елемента.
+        </div>
+      </section>
+
+      <section id="task">
+        <h2>🎯 Практичне завдання</h2>
+        <div class="task">
+          <h3>«Створи власний тематичний сайт»</h3>
+          <p>
+            Створи односторінковий HTML-сайт на одну з тем. Кожен великий розділ
+            сторінки повинен бути окремою частиною сайту.
+          </p>
+
+          <h3>💡 Варіанти тем</h3>
+          <ul>
+            <li>
+              🎮 <strong>Моя улюблена відеогра</strong> — сюжет, персонажі, світ
+              гри, цікаві факти.
+            </li>
+            <li>
+              🤖 <strong>Штучний інтелект</strong> — що це таке, де
+              використовується, переваги та ризики.
+            </li>
+            <li>
+              🚀 <strong>Освоєння космосу</strong> — планети, космічні місії,
+              майбутнє людства.
+            </li>
+            <li>
+              🎵 <strong>Музика, яку я слухаю</strong> — жанри, виконавці,
+              альбоми, рекомендації.
+            </li>
+            <li>
+              🏎️ <strong>Світ автомобілів</strong> — історія, цікаві моделі,
+              технології майбутнього.
+            </li>
+            <li>
+              💻 <strong>Професії майбутнього</strong> — які професії можуть
+              стати популярними через 10–20 років.
+            </li>
+            <li>
+              🌍 <strong>Місце, яке я хочу відвідати</strong> — країна, місто,
+              пам'ятки, цікаві факти.
+            </li>
+            <li>
+              🧠 <strong>Як працює мозок</strong> — пам'ять, сон, навчання та
+              цікаві факти.
+            </li>
+          </ul>
+
+          <h3>Частина 1. Односторінковий сайт</h3>
+          <p>
+            Створи сторінку з щонайменше <strong>4–5 розділами</strong>. Кожен
+            розділ повинен мати свій заголовок.
+          </p>
+          <p>Обов'язково використай:</p>
+          <ol>
+            <li>
+              <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>,
+              <code>&lt;h3&gt;</code>;
+            </li>
+            <li><code>&lt;p&gt;</code> для тексту;</li>
+            <li>нумерований список <code>&lt;ol&gt;</code>;</li>
+            <li>ненумерований список <code>&lt;ul&gt;</code>;</li>
+            <li>хоча б один вкладений список;</li>
+            <li>
+              <code>start</code> та один із варіантів <code>type</code> для
+              <code>ol</code>;
+            </li>
+            <li>
+              <code>type="circle"</code> або <code>type="square"</code> для
+              <code>ul</code>;
+            </li>
+            <li>атрибут <code>title</code> хоча б для одного елемента;</li>
+            <li>зовнішнє посилання з <code>href</code>;</li>
+            <li>посилання з <code>target="_blank"</code>;</li>
+            <li>посилання на електронну адресу через <code>mailto:</code>;</li>
+            <li>
+              щонайменше <strong>3 якірні посилання</strong> за допомогою
+              <code>id</code> та <code>#</code>.
+            </li>
+          </ol>
+
+          <h3>Частина 2. Перетвори сайт на багатосторінковий</h3>
+          <p>
+            Перероби роботу так, щоб інформація була розподілена між кількома
+            HTML-файлами.
+          </p>
+          <pre><code>index.html      — головна сторінка
+history.html    — історія
+facts.html      — цікаві факти
+gallery.html    — галерея
+contacts.html   — контакти</code></pre>
+          <p>
+            На кожній сторінці зроби навігацію за допомогою
+            <code>&lt;a&gt;</code>, щоб можна було переходити між сторінками.
+          </p>
+
+          <h3>⭐ Додаткове завдання</h3>
+          <ul>
+            <li>Зроби на кожній сторінці посилання «На головну».</li>
+            <li>Додай якір «На початок сторінки».</li>
+            <li>Використай різні види списків залежно від змісту.</li>
+            <li>Додай <code>title</code> до кількох посилань.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>✅ Самоперевірка</h2>
+        <ul>
+          <li>☐ Я знаю різницю між <code>ol</code> і <code>ul</code>.</li>
+          <li>☐ Я вмію створювати вкладені списки.</li>
+          <li>
+            ☐ Я вмію використовувати <code>start</code> і <code>type</code>.
+          </li>
+          <li>☐ Я розумію, що таке атрибут HTML-тега.</li>
+          <li>
+            ☐ Я знаю, для чого потрібні <code>title</code>, <code>lang</code> і
+            <code>meta</code>.
+          </li>
+          <li>☐ Я вмію створювати зовнішні та внутрішні посилання.</li>
+          <li>☐ Я вмію відкривати посилання в новій вкладці.</li>
+          <li>☐ Я вмію створювати посилання на електронну пошту.</li>
+          <li>
+            ☐ Я вмію створювати якірні посилання за допомогою <code>id</code> та
+            <code>#</code>.
+          </li>
+          <li>☐ Я можу створити багатосторінковий сайт.</li>
+        </ul>
+        <div class="warn">
+          <strong>Головне:</strong> не просто копіюй приклади. Експериментуй зі
+          значеннями атрибутів і перевіряй результат безпосередньо у браузері.
+        </div>
+      </section>
+    </main>
+
+    <footer>Інформатика • 11 клас • HTML: списки, атрибути та посилання</footer>
+  </body>
+</html>
