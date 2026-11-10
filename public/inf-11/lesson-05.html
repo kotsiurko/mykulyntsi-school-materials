@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 11 клас — Підключення файлів, div та span</title>
+    <style>
+        body { margin:0; font-family:Arial,sans-serif; background:#f2f0f8; color:#28243a; line-height:1.6; }
+        header { background:linear-gradient(135deg,#45327f,#168b83); color:white; padding:32px 20px; text-align:center; }
+        header h1 { margin:0 0 8px; }
+        main { max-width:1050px; margin:24px auto; padding:0 18px 40px; }
+        section { background:white; padding:24px; margin:20px 0; border-radius:14px; box-shadow:0 4px 16px #33225518; }
+        h2 { color:#45327f; border-bottom:2px solid #ddd5f0; padding-bottom:8px; }
+        h3 { color:#168b83; }
+        pre { background:#20212b; color:#f5f5f5; padding:15px; border-radius:9px; overflow:auto; }
+        code { font-family:Consolas,monospace; }
+        .result { background:#effaf7; border-left:5px solid #168b83; padding:14px 18px; border-radius:8px; margin:12px 0 18px; }
+        .tip { background:#fff8df; border-left:5px solid #d6a52b; padding:12px 16px; border-radius:8px; }
+        .warn { background:#fff0f0; border-left:5px solid #d65b5b; padding:12px 16px; border-radius:8px; }
+        .task { background:#f1edff; border-left:5px solid #6547a8; padding:15px 18px; border-radius:8px; }
+        .toc a { color:#45327f; text-decoration:none; }
+        .samplebox { border:2px dashed #9c8cc5; padding:12px; margin:8px 0; }
+        .sampleinline { background:#ffe7a8; }
+        table { border-collapse:collapse; width:100%; }
+        th,td { border:1px solid #aaa; padding:8px; text-align:left; }
+        th { background:#e9e3f7; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>HTML: підключення файлів, div та span</h1>
+    <p>11 клас • короткий конспект • приклади • практичні завдання</p>
+</header>
+<main>
+
+<section class="toc">
+<h2>📌 Зміст уроку</h2>
+<ol>
+    <li><a href="#intro">Для чого потрібні окремі файли?</a></li>
+    <li><a href="#link">Підключення CSS — тег link</a></li>
+    <li><a href="#script">Підключення JavaScript — тег script</a></li>
+    <li><a href="#project">Структура папок проєкту</a></li>
+    <li><a href="#taskfiles">Міні-завдання 1 — підключаємо файли</a></li>
+    <li><a href="#div">Тег div — блок</a></li>
+    <li><a href="#span">Тег span — рядковий елемент</a></li>
+    <li><a href="#compare">Порівняння div і span</a></li>
+    <li><a href="#taskdiv">Міні-завдання 2 — інформаційна картка</a></li>
+</ol>
+</section>
+
+<section id="intro">
+<h2>1. Для чого потрібні окремі файли?</h2>
+<p>HTML відповідає за структуру та вміст вебсторінки. Для оформлення сторінок використовують CSS, а для додаткової поведінки та взаємодії — JavaScript.</p>
+<p>Зазвичай ці частини зберігають в окремих файлах, а потім підключають до HTML-документа.</p>
+<table>
+<tr><th>Файл</th><th>Для чого потрібен</th><th>Приклад розширення</th></tr>
+<tr><td>HTML</td><td>Структура сторінки</td><td><code>.html</code></td></tr>
+<tr><td>CSS</td><td>Оформлення сторінки</td><td><code>.css</code></td></tr>
+<tr><td>JavaScript</td><td>Додаткова поведінка та функціональність</td><td><code>.js</code></td></tr>
+</table>
+<div class="tip"><b>Запам'ятай:</b> сьогодні ми вчимося саме підключати CSS- і JavaScript-файли. Детально вивчати самі мови CSS та JavaScript будемо окремо.</div>
+</section>
+
+<section id="link">
+<h2>2. Підключення CSS — тег link</h2>
+<p>Для підключення зовнішнього CSS-файлу використовують одиночний тег <code>link</code>. Його розміщують усередині <code>head</code>.</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Мій сайт&lt;/title&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+<p>Розглянемо атрибути:</p>
+<ul>
+    <li><code>rel="stylesheet"</code> — повідомляє браузеру, що підключається таблиця стилів.</li>
+    <li><code>href="css/style.css"</code> — шлях до CSS-файлу.</li>
+</ul>
+<div class="result">
+<b>Що відбувається?</b>
+<p>Браузер знаходить файл <code>style.css</code> у папці <code>css</code> і підключає його до сторінки.</p>
+</div>
+<div class="tip"><b>Важливо:</b> <code>link</code> — одиночний тег. Закривальний тег <code>&lt;/link&gt;</code> не потрібен.</div>
+<h3>Якщо CSS-файл лежить поруч з index.html</h3>
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+<h3>Якщо CSS-файл лежить у папці css</h3>
+<pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
+</section>
+
+<section id="script">
+<h2>3. Підключення JavaScript — тег script</h2>
+<p>Для підключення зовнішнього JavaScript-файлу використовують тег <code>script</code> з атрибутом <code>src</code>.</p>
+<pre><code>&lt;body&gt;
+    &lt;h1&gt;Моя сторінка&lt;/h1&gt;
+    &lt;p&gt;Вітаю на сайті!&lt;/p&gt;
+
+    &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+<ul>
+    <li><code>src</code> — шлях до JavaScript-файлу.</li>
+    <li><code>js/main.js</code> — файл <code>main.js</code>, який знаходиться в папці <code>js</code>.</li>
+</ul>
+<div class="result">
+<b>Де розміщувати script?</b>
+<p>Рекомендовано розміщувати підключення зовнішнього скрипту наприкінці <code>body</code>, перед закривальним тегом <code>&lt;/body&gt;</code>. Так основний вміст сторінки встигає завантажитися до обробки скрипту.</p>
+</div>
+<div class="warn"><b>Не переплутай:</b> на відміну від <code>link</code>, тег <code>script</code> має відкривальну та закривальну частини: <code>&lt;script ...&gt;&lt;/script&gt;</code>.</div>
+<h3>Чи можна написати JavaScript прямо в HTML?</h3>
+<pre><code>&lt;script&gt;
+    // Тут може бути JavaScript-код
+&lt;/script&gt;</code></pre>
+<p>Так, тег <code>script</code> як і стилі через тег <code>style</code> можна поміщати в html-файлі. Але в цьому уроці ми тренуємо підключення окремих файлів.</p>
+</section>
+
+<section id="project">
+<h2>4. Структура папок проєкту</h2>
+<p>Приклад організації файлів:</p>
+<pre><code>мій-сайт/
+│
+├── index.html
+│
+├── css/
+│   └── style.css
+│
+└── js/
+    └── main.js</code></pre>
+<p>У файлі <code>index.html</code> підключення виглядатимуть так:</p>
+<pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;!-- Вміст сторінки --&gt;
+
+    &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+<div class="tip"><b>Пам'ятай про шлях:</b> якщо HTML-файл знаходиться в кореневій папці проєкту, то для входу в папку <code>css</code> записуємо <code>css/</code>, а для входу в <code>js</code> — <code>js/</code>.</div>
+<p>Якщо файли <code>style.css</code> і <code>main.js</code> поки порожні, зовнішній вигляд та поведінка сторінки не зміняться. Але підключення вже налаштоване.</p>
+</section>
+
+<section id="taskfiles">
+<h2>🎯 Міні-завдання 1 — «Підключи файли»</h2>
+<div class="task">
+<ol>
+    <li>Створи папку проєкту <code>my-site</code>.</li>
+    <li>У ній створи файл <code>index.html</code>.</li>
+    <li>Створи папку <code>css</code>, а в ній файл <code>style.css</code>.</li>
+    <li>Створи папку <code>js</code>, а в ній файл <code>main.js</code>.</li>
+    <li>Усередині тегу <code>head</code> підключи CSS за допомогою тегу <code>link</code>.</li>
+    <li>Перед закривальним тегом <code>body</code> підключи JavaScript за допомогою тегу <code>script</code>.</li>
+    <li>Додай на сторінку заголовок та два абзаци.</li>
+    <li>Перевір, чи немає помилок у назвах папок і шляхах до файлів.</li>
+</ol>
+<p><b>Додатково:</b> відкрий HTML-файл у браузері. Переконайся, що сторінка відображається, навіть якщо файли CSS і JS поки порожні.</p>
+</div>
+</section>
+
+<section id="div">
+<h2>5. Тег div — блок</h2>
+<p>Тег <code>div</code> створює блок — контейнер, у який можна помістити інші HTML-елементи.</p>
+<pre><code>&lt;div&gt;
+    Це перший блок
+&lt;/div&gt;
+
+&lt;div&gt;
+    Це другий блок
+&lt;/div&gt;</code></pre>
+<div class="result">
+<div class="samplebox">Це перший блок</div>
+<div class="samplebox">Це другий блок</div>
+<p>Кожен <code>div</code> починається з нового рядка та займає доступну ширину.</p>
+</div>
+<p>Усередину <code>div</code> можна поміщати заголовки, абзаци, зображення, списки, посилання та інші елементи.</p>
+<pre><code>&lt;div&gt;
+    &lt;h3&gt;Мій улюблений предмет&lt;/h3&gt;
+    &lt;p&gt;Мені подобається інформатика.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<div class="result">
+<div class="samplebox">
+<h3>Мій улюблений предмет</h3>
+<p>Мені подобається інформатика.</p>
+</div>
+</div>
+<div class="tip"><b>Для чого використовують div?</b> Щоб об'єднувати елементи в логічні блоки: шапку сайту, меню, основну частину, картки, підвал тощо.</div>
+</section>
+
+<section id="span">
+<h2>6. Тег span — рядковий елемент</h2>
+<p>Тег <code>span</code> виділяє частину тексту або інший невеликий рядковий фрагмент. Сам по собі він не переносить текст на новий рядок.</p>
+<pre><code>&lt;p&gt;
+    Сьогодні ми вивчаємо
+    &lt;span&gt;HTML&lt;/span&gt;.
+    Слово HTML залишається всередині того самого рядка.
+&lt;/p&gt;</code></pre>
+<div class="result">
+<p>Сьогодні ми вивчаємо <span class="sampleinline">HTML</span>.</p>
+<p>Слово HTML залишається всередині того самого рядка.</p>
+</div>
+<p>Тег <code>span</code> зручно використовувати, коли потрібно виділити лише частину речення, щоб згодом оформити її за допомогою CSS.</p>
+<pre><code>&lt;p&gt;
+    Моя оцінка з інформатики:
+    &lt;span&gt;12 балів&lt;/span&gt;.
+&lt;/p&gt;</code></pre>
+<div class="result">
+<p>Моя оцінка з інформатики: <span class="sampleinline">12 балів</span>.</p>
+</div>
+<div class="tip"><b>Запам'ятай:</b> <code>span</code> не створює окремий блок. Він виділяє частину рядка.</div>
+</section>
+
+<section id="compare">
+<h2>7. Порівняння div і span</h2>
+<table>
+<tr><th>Тег</th><th>Тип елемента</th><th>Як відображається</th><th>Для чого зручно використовувати</th></tr>
+<tr><td><code>div</code></td><td>Блоковий</td><td>Починається з нового рядка</td><td>Групування великих частин сторінки</td></tr>
+<tr><td><code>span</code></td><td>Рядковий</td><td>Залишається в поточному рядку</td><td>Виділення частини тексту або фрагмента</td></tr>
+</table>
+<h3>Приклад для порівняння</h3>
+<pre><code>&lt;p&gt;Перший текст &lt;span&gt;виділений фрагмент&lt;/span&gt; продовження тексту.&lt;/p&gt;
+
+&lt;div&gt;Перший блок&lt;/div&gt;
+&lt;div&gt;Другий блок&lt;/div&gt;</code></pre>
+<div class="result">
+<p>Перший текст <span class="sampleinline">виділений фрагмент</span> продовження тексту.</p>
+<div class="samplebox">Перший блок</div>
+<div class="samplebox">Другий блок</div>
+</div>
+</section>
+
+<section id="taskdiv">
+<h2>🎯 Міні-завдання 2 — «Інформаційна картка»</h2>
+<div class="task">
+<p><b>Створи сторінку про улюблену гру, фільм, музичний гурт, смартфон або майбутню професію.</b></p>
+<ol>
+    <li>Додай головний заголовок сторінки.</li>
+    <li>Створи за допомогою <code>div</code> три окремі блоки: «Коротко про тему», «Цікаві факти», «Моя думка».</li>
+    <li>У кожному блоці використай заголовок і хоча б один абзац.</li>
+    <li>У тексті одного з абзаців виділи за допомогою <code>span</code> важливе слово або фразу.</li>
+    <li>Додай ще один <code>div</code> для підсумку сторінки.</li>
+</ol>
+<p><b>Додатково:</b> підключи до сторінки порожні файли <code>style.css</code> і <code>main.js</code> за правилами з першої частини уроку.</p>
+</div>
+</section>
+
+<section>
+<h2>✅ Самоперевірка</h2>
+<ul>
+    <li>☐ Я знаю, для чого потрібен тег <code>link</code>.</li>
+    <li>☐ Я можу підключити CSS-файл у секції <code>head</code>.</li>
+    <li>☐ Я знаю, для чого потрібен тег <code>script</code>.</li>
+    <li>☐ Я можу підключити JS-файл за допомогою атрибута <code>src</code>.</li>
+    <li>☐ Я розумію, як записувати відносні шляхи до файлів.</li>
+    <li>☐ Я можу пояснити різницю між <code>div</code> і <code>span</code>.</li>
+    <li>☐ Я вмію об'єднувати елементи в блоки за допомогою <code>div</code>.</li>
+    <li>☐ Я вмію виділяти частину тексту за допомогою <code>span</code>.</li>
+</ul>
+</section>
+
+<section>
+<h2>📚 Підсумок уроку</h2>
+<p><b>link</b> — підключає зовнішній CSS-файл у <code>head</code>.</p>
+<p><b>script</b> — підключає JavaScript-файл; у нашому прикладі розміщуємо його наприкінці <code>body</code>.</p>
+<p><b>div</b> — блочний контейнер для групування елементів.</p>
+<p><b>span</b> — рядковий контейнер для виділення частини тексту.</p>
+</section>
+
+</main>
+</body>
+</html>
